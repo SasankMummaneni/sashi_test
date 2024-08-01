@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive HTML Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #444;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 2rem;
+        }
+        .form-section, .table-section {
+            background: #fff;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        form input, form button {
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        footer {
+            background: #444;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive HTML Example</h1>
+    </header>
+    <div class="container">
+        <div class="form-section">
+            <h2>Submit Your Information</h2>
+            <form id="infoForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="formMessage"></div>
+        </div>
+        <div class="table-section">
+            <h2>Sample Data Table</h2>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be added here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Interactive HTML Example</p>
+    </footer>
+    <script>
+        document.getElementById('infoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                // Add data to table
+                const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
+                const nameCell = newRow.insertCell(0);
+                const emailCell = newRow.insertCell(1);
+                nameCell.textContent = name;
+                emailCell.textContent = email;
+                
+                // Display success message
+                document.getElementById('formMessage').textContent = 'Information submitted successfully!';
+                document.getElementById('formMessage').style.color = 'green';
+                
+                // Clear form fields
+                document.getElementById('infoForm').reset();
+            } else {
+                // Display error message
+                document.getElementById('formMessage').textContent = 'Please fill out all fields.';
+                document.getElementById('formMessage').style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
